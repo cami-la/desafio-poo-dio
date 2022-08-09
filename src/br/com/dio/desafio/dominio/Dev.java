@@ -31,12 +31,14 @@ public class Dev {
         }
         return soma;
 
-        /*return this.conteudosConcluidos
+        /* Usando Stream API
+         * return this.conteudosConcluidos
                 .stream()
                 .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
+                .sum();
+         */
     }
-
+    //Criar método que Autoriza a emissão do certificado
 
     public String getNome() {
         return nome;
