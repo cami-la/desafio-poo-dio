@@ -11,9 +11,17 @@ public class Mentoria extends Conteudo{
         return XP_PADRAO + 20d;
     }
 
+    //Construtores
     public Mentoria() {
     }
 
+    public Mentoria(String titulo, String descricao, LocalDate data) {
+        this.setTitulo(titulo);
+        this.setDescricao(descricao);
+        this.data = data;
+    }
+
+    //set e get
     public LocalDate getData() {
         return data;
     }
@@ -27,6 +35,6 @@ public class Mentoria extends Conteudo{
         return "Mentoria: "
         		+ getTitulo()
                 + "\nDescricao: " + getDescricao()
-                + "\nInicio: " + data;
+                + "\nData: " + data;
     }
 }

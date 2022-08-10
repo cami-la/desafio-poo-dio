@@ -5,9 +5,14 @@ import br.com.dio.desafio.dominio.Mentoria;
 import br.com.dio.desafio.dominio.ProjetoPratico;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        //dados de Dev
+        String nome;
+
         Curso curso1 = new Curso();
         curso1.setTitulo("Curso Java");
         curso1.setDescricao("Descricao Curso Java");
@@ -37,14 +42,17 @@ public class Main {
         bootcamp.getConteudos().add(projeto);
 
         Dev dev1 = new Dev();
-        dev1.setNome("Maria");
+        System.out.println("Nome:");
+        nome = leitor.next();
+        dev1.setNome(nome);
         dev1.inscreverBootcamp(bootcamp);
+        //criar menu de progresso
         System.out.println("Conteudos Inscritos de"+ dev1.getNome()+":" + dev1.getConteudosInscritos());
         dev1.progredir();
         dev1.progredir();
         dev1.progredir();
         dev1.progredir();
-        System.out.println("-");
+        System.out.println("-------");
         System.out.println("Conteudos Inscritos de"+ dev1.getNome()+":" + dev1.getConteudosInscritos());
         System.out.println("Conteudos Concluidos de"+ dev1.getNome()+":" + dev1.getConteudosConcluidos());
         System.out.println("XP:" + dev1.calcularTotalXp());
@@ -65,7 +73,8 @@ public class Main {
         System.out.println("Conteudos Concluidos de"+ dev2.getNome()+":" + dev2.getConteudosConcluidos());
         System.out.println("XP:" + dev2.calcularTotalXp());
         dev2.emitirCertificadoConclusao();
-        
+
+        leitor.close();
     }
 
 }

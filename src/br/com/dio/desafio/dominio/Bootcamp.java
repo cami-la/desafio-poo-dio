@@ -9,12 +9,12 @@ import java.util.Set;
 public class Bootcamp {
     private String nome;
     private String descricao;
-    private final LocalDate dataInicial = LocalDate.now();
+    private final LocalDate dataInicial = LocalDate.now(); //coloca a data do momento em que foi instanciado
     private final LocalDate dataFinal = dataInicial.plusDays(45);
     private Set<Dev> devsInscritos = new HashSet<>();
-    private Set<Conteudo> conteudos = new LinkedHashSet<>();    
+    private Set<Conteudo> conteudos = new LinkedHashSet<>();
 
-
+    //setters e getters
     public String getNome() {
         return nome;
     }
@@ -55,6 +55,7 @@ public class Bootcamp {
         this.conteudos = conteudos;
     }
 
+    //Equals e HashSet
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
