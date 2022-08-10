@@ -18,8 +18,16 @@ public class Dev {
             this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
         } else {
-            System.err.println("Voc√™ n√£o est√° matriculado em nenhum conte√∫do!");
+            System.err.println("Voce nao esta matriculado em nenhum conteudo!");
         }
+    }
+    
+  //MÈtodo que autoriza a emiss„o do certificado de conclus„o do Bootcamp
+    public void emitirCertificadoConclusao() {
+    	Iterator<Conteudo> iterator = this.conteudosInscritos.iterator();
+    	if (!iterator.hasNext()) {
+    		System.out.println("PARAB…NS! Voce concluiu o Bootcamp! Ja pode emitir seu certificado de conclusao!");
+    	}
     }
 
     public double calcularTotalXp() {
@@ -31,14 +39,13 @@ public class Dev {
         }
         return soma;
 
-        /* Usando Stream API
+        /* Usando Stream API para somar o XP dentro de uma lista 
          * return this.conteudosConcluidos
                 .stream()
                 .mapToDouble(Conteudo::calcularXp)
                 .sum();
          */
     }
-    //Criar mÈtodo que Autoriza a emiss„o do certificado
 
     public String getNome() {
         return nome;

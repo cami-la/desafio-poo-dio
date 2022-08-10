@@ -10,27 +10,27 @@ public class Main {
     public static void main(String[] args) {
         Curso curso1 = new Curso();
         curso1.setTitulo("Curso Java");
-        curso1.setDescricao("Descrição curso java");
+        curso1.setDescricao("Descricao Curso Java");
         curso1.setCargaHoraria(8);
 
         Curso curso2 = new Curso();
         curso2.setTitulo("Curso Spring Framework");
-        curso2.setDescricao("Descrição curso spring");
+        curso2.setDescricao("Descricao Curso Spring");
         curso2.setCargaHoraria(4);
 
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("Mentoria de Java");
-        mentoria.setDescricao("Descrição mentoria java");
+        mentoria.setDescricao("Descricao Mentoria Java");
         mentoria.setData(LocalDate.now());
         
         ProjetoPratico projeto = new ProjetoPratico();
         projeto.setTitulo("Projeto Prático de Java");
-        projeto.setDescricao("Descrição do projeto java");
-        projeto.setNivelDificuldade(2);
+        projeto.setDescricao("Descricao do Projeto Java");
+        projeto.setNivelDificuldade(3);
 
         Bootcamp bootcamp = new Bootcamp();
         bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
+        bootcamp.setDescricao("Descricao Bootcamp Java Developer");
         bootcamp.getConteudos().add(curso1);
         bootcamp.getConteudos().add(curso2);
         bootcamp.getConteudos().add(mentoria);
@@ -48,9 +48,10 @@ public class Main {
         System.out.println("Conteudos Inscritos de"+ dev1.getNome()+":" + dev1.getConteudosInscritos());
         System.out.println("Conteudos Concluidos de"+ dev1.getNome()+":" + dev1.getConteudosConcluidos());
         System.out.println("XP:" + dev1.calcularTotalXp());
+        dev1.emitirCertificadoConclusao();
         
 
-        System.out.println("-------");
+        System.out.println("******************");
 
         Dev dev2 = new Dev();
         dev2.setNome("Sebastian");
@@ -63,6 +64,7 @@ public class Main {
         System.out.println("Conteudos Inscritos de"+ dev2.getNome()+":" + dev2.getConteudosInscritos());
         System.out.println("Conteudos Concluidos de"+ dev2.getNome()+":" + dev2.getConteudosConcluidos());
         System.out.println("XP:" + dev2.calcularTotalXp());
+        dev2.emitirCertificadoConclusao();
         
     }
 

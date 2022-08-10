@@ -20,9 +20,9 @@ public class ProjetoPratico extends Conteudo {
 
 	@Override
 	public String toString() {
-		return "Projeto Pratico " + getTitulo()
-				+ ", Descrição" + getDescricao()
-				+ "Nivel de Dificuldade: " + nivelDificuldade;
+		return "Projeto Pratico: " + getTitulo()
+				+ "\nDescrição" + getDescricao()
+				+ "\nNivel de Dificuldade: " + nivelDificuldade;
 	}
 
 	public ProjetoPratico() {
