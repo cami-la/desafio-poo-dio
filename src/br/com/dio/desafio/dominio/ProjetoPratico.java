@@ -18,19 +18,20 @@ public class ProjetoPratico extends Conteudo {
 		this.nivelDificuldade = nivelDificuldade;
 	}
 
+	public ProjetoPratico() {
+	}
+
+	public ProjetoPratico(String titulo, String descricao, int nivelDificuldade) {
+		super(titulo, descricao); //se refere a classe mãe
+		this.nivelDificuldade = nivelDificuldade;
+	}
+
 	@Override
 	public String toString() {
 		return "Projeto Pratico: " + getTitulo()
 				+ "\nDescrição" + getDescricao()
 				+ "\nNivel de Dificuldade: " + nivelDificuldade;
 	}
-
-	public ProjetoPratico() {
-		
-	}	
-	
-	
-	
 	//CTRL + SHIFT + L -> Atalhos pra ver os atalhos no eclipse
 	
 }

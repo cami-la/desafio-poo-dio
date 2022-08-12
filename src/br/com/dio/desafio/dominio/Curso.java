@@ -14,8 +14,7 @@ public class Curso extends Conteudo{
     }
 
     public Curso(String titulo, String descricao, int cargaHoraria) {
-        this.setTitulo(titulo);
-        this.setDescricao(descricao);
+        super(titulo, descricao); //se refere a classe mãe
         this.cargaHoraria = cargaHoraria;
     }
 

@@ -13,6 +13,7 @@ public class Main {
         //dados de Dev
         String nome;
 
+        //Cadastrando curso
         Curso curso1 = new Curso();
         curso1.setTitulo("Curso Java");
         curso1.setDescricao("Descricao Curso Java");
@@ -23,16 +24,19 @@ public class Main {
         curso2.setDescricao("Descricao Curso Spring");
         curso2.setCargaHoraria(4);
 
+        //Cadastrando mentoria
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("Mentoria de Java");
         mentoria.setDescricao("Descricao Mentoria Java");
         mentoria.setData(LocalDate.now());
-        
+
+        //Cadastrando Projeto
         ProjetoPratico projeto = new ProjetoPratico();
         projeto.setTitulo("Projeto Prático de Java");
         projeto.setDescricao("Descricao do Projeto Java");
         projeto.setNivelDificuldade(3);
 
+        //Inicializando um bootcamp
         Bootcamp bootcamp = new Bootcamp();
         bootcamp.setNome("Bootcamp Java Developer");
         bootcamp.setDescricao("Descricao Bootcamp Java Developer");
@@ -41,40 +45,36 @@ public class Main {
         bootcamp.getConteudos().add(mentoria);
         bootcamp.getConteudos().add(projeto);
 
+        //Usuario Dev e opcoes
         Dev dev1 = new Dev();
         System.out.println("Nome:");
         nome = leitor.next();
         dev1.setNome(nome);
         dev1.inscreverBootcamp(bootcamp);
-        //criar menu de progresso
-        System.out.println("Conteudos Inscritos de"+ dev1.getNome()+":" + dev1.getConteudosInscritos());
-        dev1.progredir();
-        dev1.progredir();
-        dev1.progredir();
-        dev1.progredir();
-        System.out.println("-------");
-        System.out.println("Conteudos Inscritos de"+ dev1.getNome()+":" + dev1.getConteudosInscritos());
-        System.out.println("Conteudos Concluidos de"+ dev1.getNome()+":" + dev1.getConteudosConcluidos());
-        System.out.println("XP:" + dev1.calcularTotalXp());
-        dev1.emitirCertificadoConclusao();
-        
-
-        System.out.println("******************");
-
-        Dev dev2 = new Dev();
-        dev2.setNome("Sebastian");
-        dev2.inscreverBootcamp(bootcamp);
-        System.out.println("Conteudos Inscritos de"+ dev2.getNome()+":" + dev2.getConteudosInscritos());
-        dev2.progredir();
-        dev2.progredir();
-        dev2.progredir();
-        System.out.println("-");
-        System.out.println("Conteudos Inscritos de"+ dev2.getNome()+":" + dev2.getConteudosInscritos());
-        System.out.println("Conteudos Concluidos de"+ dev2.getNome()+":" + dev2.getConteudosConcluidos());
-        System.out.println("XP:" + dev2.calcularTotalXp());
-        dev2.emitirCertificadoConclusao();
+        int op;
+        {
+            System.out.println("O que quer fazer "+ dev1.getNome()+"?");
+            System.out.println("Digite: \n1- Visualizar Conteudos a Fazer");
+            System.out.println("2- Progredir no Bootcamp \n3- Visualizar Conteudos Concluidos");
+            System.out.println("4- Pontos de Experiencias (XP) \n5- Emitir Certificado do Bootcamp");
+            System.out.println("0- Sair");
+            op = leitor.nextInt();
+            switch (op){
+                case 1:
+                    dev1.conteudosInscritos();
+                case 2:
+                    dev1.progredir();
+                case 3:
+                    dev1.conteudosConcluidos();
+                case 4:
+                    System.out.println("XP:" + dev1.calcularTotalXp());
+                case 5:
+                    dev1.emitirCertificado();
+                default:
+                    break;
+            }
+        }while (op != 0)
 
         leitor.close();
     }
-
 }

@@ -16,8 +16,7 @@ public class Mentoria extends Conteudo{
     }
 
     public Mentoria(String titulo, String descricao, LocalDate data) {
-        this.setTitulo(titulo);
-        this.setDescricao(descricao);
+        super(titulo, descricao); //se refere a classe mãe
         this.data = data;
     }
 

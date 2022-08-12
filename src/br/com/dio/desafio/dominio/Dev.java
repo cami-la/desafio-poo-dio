@@ -10,6 +10,7 @@ public class Dev {
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
+        System.out.println("Parabéns! Voce se inscreveu no Bootcamp "+getNome());
     }
 
     public void progredir() {
@@ -17,17 +18,28 @@ public class Dev {
         if(conteudo.isPresent()) {
             this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
+            System.out.println("Parabens! Voce está progredindo!");
         } else {
             System.err.println("Voce nao esta matriculado em nenhum conteudo!");
         }
     }
-    
+
+    public void conteudosInscritos(){
+        System.out.println("Conteudos Inscritos de" + getNome() + ":" + getConteudosInscritos());
+    }
+
+    public void conteudosConcluidos(){
+        System.out.println("Conteudos Concluidos de" + getNome() + ":" + getConteudosConcluidos());
+    }
+
   //Método que autoriza a emissão do certificado de conclusão do Bootcamp
-    public void emitirCertificadoConclusao() {
+    public void emitirCertificado() {
     	Iterator<Conteudo> iterator = this.conteudosInscritos.iterator();
-    	if (!iterator.hasNext()) {
-    		System.out.println("PARABÉNS! Voce concluiu o Bootcamp! Ja pode emitir seu certificado de conclusao!");
-    	}
+    	if (iterator.hasNext()) {
+            System.err.println("Voce ainda tem atividades a completar");
+    	} else {
+            System.out.println("PARABENS! Voce concluiu o Bootcamp! Ja pode emitir seu certificado de conclusao!");
+        }
     }
 
     public double calcularTotalXp() {
@@ -47,6 +59,7 @@ public class Dev {
          */
     }
 
+    //setters e getters
     public String getNome() {
         return nome;
     }
@@ -71,6 +84,7 @@ public class Dev {
         this.conteudosConcluidos = conteudosConcluidos;
     }
 
+    //equals e hash code
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
