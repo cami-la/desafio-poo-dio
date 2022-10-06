@@ -9,7 +9,7 @@
 
 <p>
 ✅ Conhecer a sintaxe da Java<br>
-✅ Java JDK 11<br>
+✅ Java JDK 17<br>
 ✅ IDE para desenvolvimento Java (usarei IntelliJ)<br>
 ✅ Git<br>
 ✅ Conta no GitHub<br>
