@@ -35,6 +35,7 @@ public class Main {
 
         Dev devCamila = new Dev();
         devCamila.setNome("Camila");
+        devCamila.setIdade(20);
         devCamila.inscreverBootcamp(bootcamp);
         System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
         devCamila.progredir();
@@ -42,12 +43,14 @@ public class Main {
         System.out.println("-");
         System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
         System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
+        System.out.println("A idade da Camila é:" + devCamila.getIdade());
         System.out.println("XP:" + devCamila.calcularTotalXp());
 
         System.out.println("-------");
 
         Dev devJoao = new Dev();
         devJoao.setNome("Joao");
+        devJoao.setIdade(18);
         devJoao.inscreverBootcamp(bootcamp);
         System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
         devJoao.progredir();
@@ -56,6 +59,7 @@ public class Main {
         System.out.println("-");
         System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
         System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
+        System.out.println( "A idade de Joao é:"+ devJoao.getIdade());
         System.out.println("XP:" + devJoao.calcularTotalXp());
 
     }
