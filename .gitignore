@@ -27,3 +27,7 @@ hs_err_pid*
 bin/
 lib/
 .settings/
+classes/
+generated-sources/
+generated-test-sources/
+test-classes/
