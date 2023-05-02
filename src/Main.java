@@ -1,9 +1,9 @@
-import br.com.dio.desafio.dominio.Bootcamp;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Dev;
-import br.com.dio.desafio.dominio.Mentoria;
-
 import java.time.LocalDate;
+
+import br.com.challenge.Bootcamp;
+import br.com.challenge.Curso;
+import br.com.challenge.Dev;
+import br.com.challenge.Mentoria;
 
 public class Main {
     public static void main(String[] args) {

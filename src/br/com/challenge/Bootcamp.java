@@ -1,4 +1,4 @@
-package br.com.dio.desafio.dominio;
+package br.com.challenge;
 
 import java.time.LocalDate;
 import java.util.HashSet;
