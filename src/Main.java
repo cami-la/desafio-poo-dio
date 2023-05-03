@@ -1,62 +1,57 @@
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 
 import br.com.challenge.Bootcamp;
-import br.com.challenge.Curso;
-import br.com.challenge.Dev;
-import br.com.challenge.Mentoria;
+import br.com.challenge.Course;
+import br.com.challenge.Developer;
+import br.com.challenge.Mentorship;
 
 public class Main {
     public static void main(String[] args) {
-        Curso curso1 = new Curso();
-        curso1.setTitulo("curso java");
-        curso1.setDescricao("descrição curso java");
-        curso1.setCargaHoraria(8);
+        Course course1 = new Course("Curso Java", "Descrição curso Java", 8);
+        Course course2 = new Course("Curso Js", "Descrição curso Js", 4);
 
-        Curso curso2 = new Curso();
-        curso2.setTitulo("curso js");
-        curso2.setDescricao("descrição curso js");
-        curso2.setCargaHoraria(4);
+        Mentorship mentorship = new Mentorship("Mentoria Java", "Descrição mentoria Java", LocalDate.now());
 
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("mentoria de java");
-        mentoria.setDescricao("descrição mentoria java");
-        mentoria.setData(LocalDate.now());
+        Bootcamp bootcamp = new Bootcamp("Bootcamp Java Developer", "Descrição Bootcamp Java Developer");
+        bootcamp.getContent().add(course1);
+        bootcamp.getContent().add(course2);
+        bootcamp.getContent().add(mentorship);
 
-        /*System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);*/
+        Developer devDiego = new Developer("Diego");
+        devDiego.signUp(bootcamp);
+        System.out.println("Conteúdos Inscritos Diego:" + devDiego.getSubscribedContents());
 
-        Bootcamp bootcamp = new Bootcamp();
-        bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
+        try {
+            devDiego.makeProgress();
+            devDiego.makeProgress();
+        } catch (NoSuchElementException e) {
+            System.out.println("You are not enrolled in any content!");
+        }
 
-        Dev devCamila = new Dev();
-        devCamila.setNome("Camila");
-        devCamila.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        devCamila.progredir();
-        devCamila.progredir();
         System.out.println("-");
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
-        System.out.println("XP:" + devCamila.calcularTotalXp());
+        System.out.println("Conteúdos Inscritos Diego:" + devDiego.getSubscribedContents());
+        System.out.println("Conteúdos Concluídos Diego:" + devDiego.getCompletedContents());
+        System.out.println("XP:" + devDiego.computeTotalXp());
 
         System.out.println("-------");
 
-        Dev devJoao = new Dev();
-        devJoao.setNome("Joao");
-        devJoao.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        devJoao.progredir();
-        devJoao.progredir();
-        devJoao.progredir();
+        Developer devRafoca = new Developer("Rafoca");
+        devRafoca.signUp(bootcamp);
+        System.out.println("Conteúdos Inscritos Rafoca:" + devRafoca.getSubscribedContents());
+
+        try {
+            devRafoca.makeProgress();
+            devRafoca.makeProgress();
+            devRafoca.makeProgress();
+        } catch (NoSuchElementException e) {
+            System.out.println("You are not enrolled in any content!");
+        }
+
         System.out.println("-");
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
-        System.out.println("XP:" + devJoao.calcularTotalXp());
+        System.out.println("Conteúdos Inscritos Rafoca:" + devRafoca.getSubscribedContents());
+        System.out.println("Conteúdos Concluidos Rafoca:" + devRafoca.getCompletedContents());
+        System.out.println("XP:" + devRafoca.computeTotalXp());
 
     }
 
