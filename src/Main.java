@@ -1,10 +1,10 @@
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
 
-import br.com.challenge.Bootcamp;
-import br.com.challenge.Course;
-import br.com.challenge.Developer;
-import br.com.challenge.Mentorship;
+import br.com.challenge.main.Bootcamp;
+import br.com.challenge.main.Course;
+import br.com.challenge.main.Developer;
+import br.com.challenge.main.Mentorship;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,9 +14,9 @@ public class Main {
         Mentorship mentorship = new Mentorship("Mentoria Java", "Descrição mentoria Java", LocalDate.now());
 
         Bootcamp bootcamp = new Bootcamp("Bootcamp Java Developer", "Descrição Bootcamp Java Developer");
-        bootcamp.getContent().add(course1);
-        bootcamp.getContent().add(course2);
-        bootcamp.getContent().add(mentorship);
+        bootcamp.addContent(course1);
+        bootcamp.addContent(course2);
+        bootcamp.addContent(mentorship);
 
         Developer devDiego = new Developer("Diego");
         devDiego.signUp(bootcamp);

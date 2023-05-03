@@ -1,8 +1,9 @@
-package br.com.challenge;
+package br.com.challenge.main;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
 
@@ -47,16 +48,23 @@ public class Bootcamp {
         return subscribedDevelopers;
     }
 
+    public Set<Content> getContents() {
+        return this.content;
+    }
+
     public void setSubscribedDevelopers(Set<Developer> subscribedDevelopers) {
         this.subscribedDevelopers = subscribedDevelopers;
     }
 
-    public Set<Content> getContent() {
-        return content;
+    public void addContent(Content content) {
+        this.content.add(content);
     }
 
-    public void setContent(Set<Content> content) {
-        this.content = content;
+    public void removeContent(Content content) {
+        if(!this.content.contains(content)) {
+            throw new NoSuchElementException("The content is not part of this Bootcamp.");
+        }
+        this.content.remove(content);
     }
 
     @Override

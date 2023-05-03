@@ -1,4 +1,4 @@
-package br.com.challenge;
+package br.com.challenge.main;
 
 public abstract class Content {
 

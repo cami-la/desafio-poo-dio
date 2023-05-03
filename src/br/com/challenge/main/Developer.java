@@ -1,4 +1,4 @@
-package br.com.challenge;
+package br.com.challenge.main;
 
 import java.util.*;
 
@@ -13,7 +13,7 @@ public class Developer {
     }
 
     public void signUp(Bootcamp bootcamp) {
-        this.subscribedContents.addAll(bootcamp.getContent());
+        this.subscribedContents.addAll(bootcamp.getContents());
         bootcamp.getSubscribedDevelopers().add(this);
     }
 
