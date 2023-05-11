@@ -1,4 +1,4 @@
-package br.com.challenge.main;
+package br.com.challenge;
 
 public class Course extends Content {
 

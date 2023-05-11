@@ -1,4 +1,4 @@
-package br.com.challenge.main;
+package br.com.challenge;
 
 import java.time.LocalDate;
 

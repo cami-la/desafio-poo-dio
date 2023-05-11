@@ -1,4 +1,4 @@
-package br.com.challenge.main;
+package br.com.challenge;
 
 import java.util.*;
 
@@ -19,7 +19,7 @@ public class Developer {
 
     public void makeProgress() throws NoSuchElementException {
         Optional<Content> content = this.subscribedContents.stream().findFirst();
-        
+
         if (content.isEmpty()) {
             throw new NoSuchElementException("You are not enrolled in any content!");
         }

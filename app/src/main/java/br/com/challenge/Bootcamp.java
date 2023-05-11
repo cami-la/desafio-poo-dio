@@ -1,4 +1,4 @@
-package br.com.challenge.main;
+package br.com.challenge;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -61,7 +61,7 @@ public class Bootcamp {
     }
 
     public void removeContent(Content content) {
-        if(!this.content.contains(content)) {
+        if (!this.content.contains(content)) {
             throw new NoSuchElementException("The content is not part of this Bootcamp.");
         }
         this.content.remove(content);
