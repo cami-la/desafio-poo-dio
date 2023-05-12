@@ -55,7 +55,8 @@ public class BootcampTest {
     }
 
     @Test
-    public void removeContent() {
+    public void addAndRemoveContent() {
+        bootcamp.addContent(content);
         assertTrue(bootcamp.getContents().contains(content));
         bootcamp.removeContent(content);
         assertTrue(bootcamp.getContents().isEmpty());
