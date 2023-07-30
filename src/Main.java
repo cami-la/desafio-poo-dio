@@ -1,7 +1,4 @@
-import br.com.dio.desafio.dominio.Bootcamp;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Dev;
-import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.*;
 
 import java.time.LocalDate;
 
@@ -11,11 +8,18 @@ public class Main {
         curso1.setTitulo("curso java");
         curso1.setDescricao("descrição curso java");
         curso1.setCargaHoraria(8);
-
+        Professor p1 = new Professor();
+        p1.setFirstName("Rodrigo");
+        p1.setSecondName("Gomes");
+        curso1.SetProfessor(p1);
         Curso curso2 = new Curso();
         curso2.setTitulo("curso js");
         curso2.setDescricao("descrição curso js");
         curso2.setCargaHoraria(4);
+        Professor p2 = new Professor();
+        p2.setFirstName("Carla");
+        p2.setSecondName("Lopes");
+        curso2.SetProfessor(p2);
 
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("mentoria de java");
