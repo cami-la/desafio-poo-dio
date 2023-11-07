@@ -4,12 +4,17 @@ import java.util.*;
 
 public class Dev {
     private String nome;
+    private Set<Dev> seguindo = new TreeSet<Dev>();
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
+    }
+
+    public void seguir(Dev dev){
+        this.seguindo.add(dev);
     }
 
     public void progredir() {
