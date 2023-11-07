@@ -1,15 +1,29 @@
 package br.com.dio.desafio.dominio;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Dev {
     private String nome;
+    private Set<Dev> devSeguindo = new TreeSet<Dev>();
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
+    }
+
+    public void seguir(Dev dev){
+        this.devSeguindo.add(dev);
+    }
+
+    public Set<Dev> getDevSeguindo(){
+        return this.devSeguindo;
+    }
+
+    public Set<Dev> getOneDevSeguindo(String name){
+        return this.devSeguindo.stream().filter(d -> d.getNome().equals(name)).collect(Collectors.toSet());
     }
 
     public void progredir() {
