@@ -1,10 +1,11 @@
 package br.com.dio.desafio.dominio;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Dev {
     private String nome;
-    private Set<Dev> seguindo = new TreeSet<Dev>();
+    private Set<Dev> devSeguindo = new TreeSet<Dev>();
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
@@ -14,7 +15,15 @@ public class Dev {
     }
 
     public void seguir(Dev dev){
-        this.seguindo.add(dev);
+        this.devSeguindo.add(dev);
+    }
+
+    public Set<Dev> getDevSeguindo(){
+        return this.devSeguindo;
+    }
+
+    public Set<Dev> getOneDevSeguindo(String name){
+        return this.devSeguindo.stream().filter(d -> d.getNome().equals(name)).collect(Collectors.toSet());
     }
 
     public void progredir() {
