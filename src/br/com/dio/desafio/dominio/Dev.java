@@ -37,6 +37,13 @@ public class Dev {
                 .sum();*/
     }
 
+    public double calcularProgresso() {
+        int total = conteudosInscritos.size() + conteudosConcluidos.size();
+        if (total == 0) return 0;
+        return ((double) conteudosConcluidos.size() / total) * 100;
+    }
+
+
 
     public String getNome() {
         return nome;
