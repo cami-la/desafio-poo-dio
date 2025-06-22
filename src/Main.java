@@ -1,63 +1,60 @@
-import br.com.dio.desafio.dominio.Bootcamp;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Dev;
-import br.com.dio.desafio.dominio.Mentoria;
-
 import java.time.LocalDate;
 
+import br.com.dio.desafio.dominio.Bootcamp;
+import br.com.dio.desafio.dominio.Course;
+import br.com.dio.desafio.dominio.Dev;
+import br.com.dio.desafio.dominio.Mentoring;
+
 public class Main {
-    public static void main(String[] args) {
-        Curso curso1 = new Curso();
-        curso1.setTitulo("curso java");
-        curso1.setDescricao("descrição curso java");
-        curso1.setCargaHoraria(8);
 
-        Curso curso2 = new Curso();
-        curso2.setTitulo("curso js");
-        curso2.setDescricao("descrição curso js");
-        curso2.setCargaHoraria(4);
+  public static void main(String[] args) {
+    Bootcamp bootcamp = new Bootcamp();
+    bootcamp.setName("Bootcamp Java Developer");
+    bootcamp.setDescription("Aprenda Java do zero ao avançado com este bootcamp incrível!");
+    bootcamp.getContents().add(new Course("Curso de Java Básico", "Aprenda os fundamentos do Java", 8));
+    bootcamp.getContents().add(new Mentoring("Mentoria de Java Básico", "Dicas e truques para deixar o código mais limpo", LocalDate.now()));
 
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("mentoria de java");
-        mentoria.setDescricao("descrição mentoria java");
-        mentoria.setData(LocalDate.now());
+    Bootcamp bootcamp2 = new Bootcamp();
+    bootcamp2.setName("Bootcamp Python Developer");
+    bootcamp2.setDescription("Aprenda Python do zero ao avançado com este bootcamp incrível!");
+    bootcamp2.getContents().add(new Course("Curso de Python Básico", "Aprenda os fundamentos do Python", 6));
+    bootcamp2.getContents().add(new Mentoring("Mentoria de Python Avançado", "Dicas e truques para dominar Python", LocalDate.now()));
 
-        /*System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);*/
+    Dev dev1 = new Dev("Alice");
+        dev1.subscribeBootcamp(bootcamp);
+        System.out.println("\n=== Conteúdos inscritos por " + dev1.getName() + " ===");
+        dev1.getSubscribedContents().forEach(content -> System.out.println("- " + content));
 
-        Bootcamp bootcamp = new Bootcamp();
-        bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
+        System.out.println("\n------ Progredindo no bootcamp ------\n");
+        dev1.progress();
+        dev1.progress(); 
+        
+        System.out.println("\n=== Conteúdos inscritos por " + dev1.getName() + " ===");
+        System.out.println("");
+        dev1.getSubscribedContents().forEach(content -> System.out.println("- " + content));
+        System.out.println("=== Conteúdos concluídos por " + dev1.getName() + " ===");
+        dev1.getCompletedContents().forEach(content -> System.out.println("- " + content)); // For each para facilitar a leitura
 
-        Dev devCamila = new Dev();
-        devCamila.setNome("Camila");
-        devCamila.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        devCamila.progredir();
-        devCamila.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
-        System.out.println("XP:" + devCamila.calcularTotalXp());
+        System.out.println("\n------ Calculando o XP ------\n");
+        System.out.println("XP total de " + dev1.getName() + ": " + dev1.calculateTotalXP());
 
-        System.out.println("-------");
 
-        Dev devJoao = new Dev();
-        devJoao.setNome("Joao");
-        devJoao.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        devJoao.progredir();
-        devJoao.progredir();
-        devJoao.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
-        System.out.println("XP:" + devJoao.calcularTotalXp());
 
-    }
+        Dev dev2 = new Dev("Bob");
+        dev2.subscribeBootcamp(bootcamp2);
+        System.out.println("\n=== Conteúdos inscritos por " + dev2.getName() + " ===");
+        dev2.getSubscribedContents().forEach(content -> System.out.println("- " + content));
 
+        System.out.println("\n------ Progredindo no bootcamp ------\n");
+        dev2.progress();
+
+        System.out.println("\n=== Conteúdos inscritos por " + dev2.getName() + " ===");
+        dev2.getSubscribedContents().forEach(content -> System.out.println("- " + content));
+        System.out.println("");
+        System.out.println("=== Conteúdos concluídos por " + dev2.getName() + " ===");
+        dev2.getCompletedContents().forEach(content -> System.out.println("- " + content));
+
+        System.out.println("\n------ Calculando o XP ------\n");
+        System.out.println("XP total de " + dev2.getName() + ": " + dev2.calculateTotalXP());
+  }
 }
