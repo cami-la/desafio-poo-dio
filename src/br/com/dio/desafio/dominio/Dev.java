@@ -3,40 +3,38 @@ package br.com.dio.desafio.dominio;
 import java.util.*;
 
 public class Dev {
+
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
-    public void inscreverBootcamp(Bootcamp bootcamp){
+    public Dev() { }
+
+    public Dev(String nome) {
+        this.nome = nome;
+    }
+
+    public void inscreverBootcamp(Bootcamp bootcamp) {
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
-        bootcamp.getDevsInscritos().add(this);
+        bootcamp.adicionarDev(this);
     }
 
     public void progredir() {
         Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
-        if(conteudo.isPresent()) {
+        if (conteudo.isPresent()) {
             this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
         } else {
-            System.err.println("Você não está matriculado em nenhum conteúdo!");
+            System.out.println("Ops! Você não está matriculado em nenhum conteúdo para progredir.");
         }
     }
 
     public double calcularTotalXp() {
-        Iterator<Conteudo> iterator = this.conteudosConcluidos.iterator();
-        double soma = 0;
-        while(iterator.hasNext()){
-            double next = iterator.next().calcularXp();
-            soma += next;
-        }
-        return soma;
-
-        /*return this.conteudosConcluidos
+        return this.conteudosConcluidos
                 .stream()
                 .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
+                .sum();
     }
-
 
     public String getNome() {
         return nome;
@@ -62,12 +60,24 @@ public class Dev {
         this.conteudosConcluidos = conteudosConcluidos;
     }
 
+    public void listarConteudosConcluidos() {
+        System.out.println("Conteúdos concluídos:");
+        conteudosConcluidos.forEach(c -> System.out.println(c.getTitulo()));
+    }
+
+    public void listarConteudosInscritos() {
+        System.out.println("Conteúdos inscritos:");
+        conteudosInscritos.forEach(c -> System.out.println(c.getTitulo()));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Dev)) return false;
         Dev dev = (Dev) o;
-        return Objects.equals(nome, dev.nome) && Objects.equals(conteudosInscritos, dev.conteudosInscritos) && Objects.equals(conteudosConcluidos, dev.conteudosConcluidos);
+        return Objects.equals(nome, dev.nome) &&
+                Objects.equals(conteudosInscritos, dev.conteudosInscritos) &&
+                Objects.equals(conteudosConcluidos, dev.conteudosConcluidos);
     }
 
     @Override
