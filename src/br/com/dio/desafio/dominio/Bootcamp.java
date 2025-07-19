@@ -1,19 +1,20 @@
 package br.com.dio.desafio.dominio;
 
+import br.com.dio.desafio.dominio.interfaces.Inscricao;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Bootcamp {
+public class Bootcamp implements Inscricao {
     private String nome;
     private String descricao;
     private final LocalDate dataInicial = LocalDate.now();
     private final LocalDate dataFinal = dataInicial.plusDays(45);
     private Set<Dev> devsInscritos = new HashSet<>();
     private Set<Conteudo> conteudos = new LinkedHashSet<>();
-
 
     public String getNome() {
         return nome;
@@ -66,5 +67,15 @@ public class Bootcamp {
     @Override
     public int hashCode() {
         return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, conteudos);
+    }
+
+    @Override
+    public void inscrever(Dev dev) {
+        devsInscritos.add(dev);
+    }
+
+    @Override
+    public void cancelarInscricao(Dev dev) {
+        devsInscritos.remove(dev);
     }
 }
