@@ -1,24 +1,26 @@
 package br.com.dio.desafio.dominio;
 
-public class Curso extends Conteudo{
+import br.com.dio.desafio.dominio.strategies.CalculoXPCurso;
 
+public class Curso extends Conteudo {
     private int cargaHoraria;
 
-    @Override
-    public double calcularXp() {
-        return XP_PADRAO * cargaHoraria;
-    }
-
     public Curso() {
+        this.estrategiaCalculoXP = new CalculoXPCurso(this.cargaHoraria);
     }
 
-
-    public int getCargaHoraria() {
-        return cargaHoraria;
+    public Curso(String titulo, String descricao, int cargaHoraria) {
+        this.setTitulo(titulo);
+        this.setDescricao(descricao);
+        this.cargaHoraria = cargaHoraria;
+        this.estrategiaCalculoXP = new CalculoXPCurso(cargaHoraria);
     }
+
+    public int getCargaHoraria() { return cargaHoraria; }
 
     public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
+        this.estrategiaCalculoXP = new CalculoXPCurso(cargaHoraria);
     }
 
     @Override
