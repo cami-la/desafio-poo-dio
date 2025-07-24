@@ -13,13 +13,11 @@ public class Dev {
     }
 
     public void progredir() {
-        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
-        if(conteudo.isPresent()) {
-            this.conteudosConcluidos.add(conteudo.get());
-            this.conteudosInscritos.remove(conteudo.get());
-        } else {
-            System.err.println("Você não está matriculado em nenhum conteúdo!");
-        }
+       this.conteudosInscritos.stream().findFirst()
+               .ifPresentOrElse(conteudo -> {
+                   this.conteudosConcluidos.add(conteudo);
+                   this.conteudosInscritos.remove(conteudo);
+               }, ()->System.err.println("Você não esta matriculado em nenhum curso"));
     }
 
     public double calcularTotalXp() {
