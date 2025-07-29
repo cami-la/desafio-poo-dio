@@ -13,6 +13,10 @@ public class Mentoria extends Conteudo{
 
     public Mentoria() {
     }
+    public Mentoria(String titulo, String descricao, LocalDate data) {
+        super(titulo, descricao);
+        this.data = data;
+    }
 
     public LocalDate getData() {
         return data;
@@ -23,11 +27,8 @@ public class Mentoria extends Conteudo{
     }
 
     @Override
-    public String toString() {
-        return "Mentoria{" +
-                "titulo='" + getTitulo() + '\'' +
-                ", descricao='" + getDescricao() + '\'' +
-                ", data=" + data +
-                '}';
+     public String toString() {
+        return String.format("Mentoria{titulo='%s', descricao='%s', data=%s}",
+            getTitulo(), getDescricao(), data);
     }
 }

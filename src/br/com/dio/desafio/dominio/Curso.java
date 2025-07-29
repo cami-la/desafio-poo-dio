@@ -11,6 +11,11 @@ public class Curso extends Conteudo{
 
     public Curso() {
     }
+    public Curso((String titulo, String descricao, int cargaHoraria) { 
+        super(titulo, descricao);
+        this.cargaHoraria = cargaHoraria;
+    }
+
 
 
     public int getCargaHoraria() {
@@ -18,15 +23,15 @@ public class Curso extends Conteudo{
     }
 
     public void setCargaHoraria(int cargaHoraria) {
+        if (cargaHoraria < 0) {
+             throw new IllegalArgumentException("A carga horária não pode ser negativa.");
+        }
         this.cargaHoraria = cargaHoraria;
     }
 
     @Override
     public String toString() {
-        return "Curso{" +
-                "titulo='" + getTitulo() + '\'' +
-                ", descricao='" + getDescricao() + '\'' +
-                ", cargaHoraria=" + cargaHoraria +
-                '}';
+        return String.format("Curso{titulo='%s', descricao='%s', cargaHoraria=%d}",
+            getTitulo(), getDescricao(), cargaHoraria);
     }
 }
