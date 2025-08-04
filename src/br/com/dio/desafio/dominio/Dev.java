@@ -1,11 +1,14 @@
 package br.com.dio.desafio.dominio;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Dev {
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+
+    private Map<Conteudo, Double> notas = new HashMap<>();
 
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
@@ -22,21 +25,23 @@ public class Dev {
         }
     }
 
-    public double calcularTotalXp() {
-        Iterator<Conteudo> iterator = this.conteudosConcluidos.iterator();
-        double soma = 0;
-        while(iterator.hasNext()){
-            double next = iterator.next().calcularXp();
-            soma += next;
-        }
-        return soma;
-
-        /*return this.conteudosConcluidos
+    
+    public BigDecimal calcularTotalXp() {
+        return this.conteudosConcluidos
                 .stream()
-                .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
+                .map(Conteudo::calcularXp)
+                .reduce(BigDecimal.ZERO, BigDecimal::add); 
     }
 
+   
+    public void avaliarConteudo(Conteudo conteudo, double nota) {
+        if (this.conteudosConcluidos.contains(conteudo)) {
+            this.notas.put(conteudo, nota);
+            System.out.println("Nota " + nota + " atribuída ao conteúdo '" + conteudo.getTitulo() + "' para o dev " + this.nome);
+        } else {
+            System.err.println("Erro: Só é possível avaliar conteúdos que já foram concluídos.");
+        }
+    }
 
     public String getNome() {
         return nome;
@@ -60,6 +65,10 @@ public class Dev {
 
     public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
         this.conteudosConcluidos = conteudosConcluidos;
+    }
+
+    public Map<Conteudo, Double> getNotas() {
+        return notas;
     }
 
     @Override

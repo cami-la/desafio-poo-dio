@@ -1,33 +1,38 @@
 package br.com.dio.desafio.dominio;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-public class Mentoria extends Conteudo{
+public class Mentoria extends Conteudo {
 
-    private LocalDate data;
+    private LocalDateTime data; 
 
     @Override
-    public double calcularXp() {
-        return XP_PADRAO + 20d;
+    public BigDecimal calcularXp() {
+       
+        return XP_PADRAO.add(new BigDecimal("20"));
     }
 
     public Mentoria() {
     }
 
-    public LocalDate getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
     @Override
     public String toString() {
-        return "Mentoria{" +
-                "titulo='" + getTitulo() + '\'' +
-                ", descricao='" + getDescricao() + '\'' +
-                ", data=" + data +
-                '}';
+      
+        StringBuilder sb = new StringBuilder();
+        sb.append("Mentoria{");
+        sb.append("titulo='").append(getTitulo()).append('\'');
+        sb.append(", descricao='").append(getDescricao()).append('\'');
+        sb.append(", data=").append(data);
+        sb.append('}');
+        return sb.toString();
     }
 }

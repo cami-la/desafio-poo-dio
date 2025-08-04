@@ -1,17 +1,19 @@
 package br.com.dio.desafio.dominio;
 
-public class Curso extends Conteudo{
+import java.math.BigDecimal; 
+
+public class Curso extends Conteudo {
 
     private int cargaHoraria;
 
     @Override
-    public double calcularXp() {
-        return XP_PADRAO * cargaHoraria;
+    public BigDecimal calcularXp() { 
+        
+        return XP_PADRAO.multiply(new BigDecimal(cargaHoraria));
     }
 
     public Curso() {
     }
-
 
     public int getCargaHoraria() {
         return cargaHoraria;
@@ -23,10 +25,12 @@ public class Curso extends Conteudo{
 
     @Override
     public String toString() {
-        return "Curso{" +
-                "titulo='" + getTitulo() + '\'' +
-                ", descricao='" + getDescricao() + '\'' +
-                ", cargaHoraria=" + cargaHoraria +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Curso{");
+        sb.append("titulo='").append(getTitulo()).append('\'');
+        sb.append(", descricao='").append(getDescricao()).append('\'');
+        sb.append(", cargaHoraria=").append(cargaHoraria);
+        sb.append('}');
+        return sb.toString();
     }
 }
