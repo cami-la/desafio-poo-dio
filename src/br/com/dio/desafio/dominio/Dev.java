@@ -61,7 +61,12 @@ public class Dev {
     public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
         this.conteudosConcluidos = conteudosConcluidos;
     }
-
+    public void getStatus(){
+        System.out.println("%s | inscritos: %d | Concluidos: %d| XP: %2f%n",
+        nome, conteudosInscritos.size(),
+        conteudosConcluidos.size(),
+                calcularTotalXp());
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
