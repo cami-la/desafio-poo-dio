@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Dev {
     private String nome;
+    private int nivel = 1;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
@@ -17,26 +18,27 @@ public class Dev {
         if(conteudo.isPresent()) {
             this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
+            subirNivel();
         } else {
             System.err.println("Você não está matriculado em nenhum conteúdo!");
         }
     }
 
     public double calcularTotalXp() {
-        Iterator<Conteudo> iterator = this.conteudosConcluidos.iterator();
-        double soma = 0;
-        while(iterator.hasNext()){
-            double next = iterator.next().calcularXp();
-            soma += next;
-        }
-        return soma;
-
-        /*return this.conteudosConcluidos
+        return this.conteudosConcluidos
                 .stream()
                 .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
+                .sum();
     }
 
+    public void subirNivel() {
+        double xpTotal = calcularTotalXp();
+        int novoNivel = (int) (xpTotal / 100) + 1;
+        if (novoNivel > this.nivel) {
+            this.nivel = novoNivel;
+            System.out.println("Parabéns, " + this.nome + "! Você subiu para o nível " + this.nivel + "!");
+        }
+    }
 
     public String getNome() {
         return nome;
@@ -44,6 +46,10 @@ public class Dev {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public int getNivel() {
+        return nivel;
     }
 
     public Set<Conteudo> getConteudosInscritos() {
