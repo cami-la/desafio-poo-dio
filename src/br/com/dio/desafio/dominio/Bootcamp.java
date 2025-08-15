@@ -55,6 +55,13 @@ public class Bootcamp {
         this.conteudos = conteudos;
     }
 
+    public void listarConteudos() {
+        System.out.println("Conteúdos do Bootcamp " + this.getNome() + ":");
+        for (Conteudo conteudo : this.getConteudos()) {
+            System.out.println("- " + conteudo.getTitulo());
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
