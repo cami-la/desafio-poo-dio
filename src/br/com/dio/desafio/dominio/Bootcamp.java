@@ -3,6 +3,7 @@ package br.com.dio.desafio.dominio;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -66,5 +67,13 @@ public class Bootcamp {
     @Override
     public int hashCode() {
         return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, conteudos);
+    }
+    
+    public List<String> getRankingDevPorXp() {
+    	return devsInscritos.stream()
+    	.sorted((d1, d2) -> Double.compare(d2.calcularTotalXp(), d1.calcularTotalXp()))
+    	.map(dev -> dev.getNome() + " - XP: " + dev.calcularTotalXp())
+    	.toList();
+
     }
 }
