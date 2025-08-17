@@ -6,6 +6,9 @@ public class Dev {
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+    private Set<String> habilidades = new LinkedHashSet<>();
+    private Set<Certificado> certificados = new LinkedHashSet<>();
+    private Set<Projeto> projetos = new LinkedHashSet<>();
 
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
@@ -15,6 +18,9 @@ public class Dev {
     public void progredir() {
         Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
         if(conteudo.isPresent()) {
+            Certificado certificado = new Certificado();
+
+            this.certificados.add(certificado);
             this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
         } else {
@@ -60,6 +66,30 @@ public class Dev {
 
     public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
         this.conteudosConcluidos = conteudosConcluidos;
+    }
+
+    public Set<String> getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(Set<String> habilidades) {
+        this.habilidades = habilidades;
+    }
+
+    public Set<Certificado> getCertificados() {
+        return certificados;
+    }
+
+    public void setCertificados(Set<Certificado> certificados) {
+        this.certificados = certificados;
+    }
+
+    public Set<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(Set<Projeto> projetos) {
+        this.projetos = projetos;
     }
 
     @Override
