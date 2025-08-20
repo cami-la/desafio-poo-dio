@@ -1,9 +1,11 @@
 package br.com.dio.desafio.dominio;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Mentoria extends Conteudo{
 
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private LocalDate data;
 
     @Override
@@ -27,7 +29,7 @@ public class Mentoria extends Conteudo{
         return "Mentoria{" +
                 "titulo='" + getTitulo() + '\'' +
                 ", descricao='" + getDescricao() + '\'' +
-                ", data=" + data +
+                ", data=" + dtf.format(data) +
                 '}';
     }
 }
