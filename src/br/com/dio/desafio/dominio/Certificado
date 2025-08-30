@@ -1,0 +1,44 @@
+package br.com.dio.desafio.dominio;
+import java.time.LocalDate;
+import java.util.UUID;
+
+public class Certificado {
+    private Dev dev;
+    private Conteudo conteudo; // Curso ou Mentoria
+    private LocalDate dataEmissao;
+    private String codigoCertificado;
+
+    public Certificado(Dev dev, Conteudo conteudo) {
+        this.dev = dev;
+        this.conteudo = conteudo;
+        this.dataEmissao = LocalDate.now();
+        this.codigoCertificado = UUID.randomUUID().toString();
+    }
+    public Dev getDev() {
+        return dev;
+    }
+
+    public Conteudo getConteudo() {
+        return conteudo;
+    }
+
+    public LocalDate getDataEmissao() {
+        return dataEmissao;
+    }
+
+    public String getCodigoCertificado() {
+        return codigoCertificado;
+    }
+
+
+    public void exibirCertificado() {
+        System.out.println("Certificado de Conclusão");
+        System.out.println("------------------------");
+        System.out.println("Dev: " + dev.getNome());
+        System.out.println("Conteúdo: " + conteudo.getTitulo());
+        System.out.println("Data de Emissão: " + dataEmissao);
+        System.out.println("Código: " + codigoCertificado);
+        System.out.println("------------------------\n");
+    }
+
+}
