@@ -11,6 +11,11 @@ public class Mentoria extends Conteudo{
         return XP_PADRAO + 20d;
     }
 
+    @Override
+    public String Projeto() {
+        return "";
+    }
+
     public Mentoria() {
     }
 
