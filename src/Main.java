@@ -1,9 +1,8 @@
-import br.com.dio.desafio.dominio.Bootcamp;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Dev;
-import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,11 +19,16 @@ public class Main {
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("mentoria de java");
         mentoria.setDescricao("descrição mentoria java");
+        mentoria.setMentor(new Mentor("Sara Gonçalves de Lima", new ArrayList<>(List.of("Java", "C#", "Q&A", "Bradesco 2025"))));
         mentoria.setData(LocalDate.now());
 
-        /*System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);*/
+        Mentoria mentoria2 = new Mentoria();
+        mentoria2.setTitulo("mentoria de C#");
+        mentoria2.setDescricao("descrição mentoria #");
+        mentoria2.setMentor(new Mentor("Carlos Junior", new ArrayList<>(List.of("Java", "C#", "Q&A", "Bradesco 2025"))));
+        mentoria2.setData(LocalDate.now());
+
+        List<Mentoria> mentorias = new ArrayList<>(List.of(mentoria, mentoria2));
 
         Bootcamp bootcamp = new Bootcamp();
         bootcamp.setNome("Bootcamp Java Developer");
@@ -45,6 +49,7 @@ public class Main {
         System.out.println("XP:" + devCamila.calcularTotalXp());
 
         System.out.println("-------");
+        System.out.println("-------");
 
         Dev devJoao = new Dev();
         devJoao.setNome("Joao");
@@ -57,6 +62,12 @@ public class Main {
         System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
         System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
         System.out.println("XP:" + devJoao.calcularTotalXp());
+        System.out.println("-------");
+
+
+        System.out.println("Mentores:");
+        mentorias.forEach(m -> System.out.println(m.toString()));
+
 
     }
 
