@@ -134,7 +134,12 @@ Vejamos alguns Subparadigmas do Paradigma Declarativo e exemplos linguagens de p
 🔹 2.2 Paradigma Lógico: Prolog<br>
 </p>
 
-<h2> 🤝 Contribuindo </h2>
+<h2> 🤝 - Contribuindo com: </h2>
+<p>- Alterações na dinâmica de renderização ao rodar o código, estruturando a saída para melhor entendimento.</p>
+<p>-Limpeza do código.</p>
+<p>-Utilização de método Lambda, porém mantendo baixo nível de complexidade.</p>
+<img width="1363" height="718" alt="image" src="https://github.com/user-attachments/assets/6c2b328d-4b43-484e-9633-791d5d3f80d8" />
+
 
 <p>
 Este repositório foi criado para fins de estudo, então contribua com ele.<br>
