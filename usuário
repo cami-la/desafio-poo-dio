@@ -1,0 +1,108 @@
+public class DesafioPOO {
+
+    // ====== Classe principal ======
+    public static void main(String[] args) {
+
+        // Criando um usuário
+        Usuario usuario = new Usuario("Débora Martins", "123.456.789-00", "debora@email.com");
+
+        // Criando contas (usando polimorfismo)
+        Conta contaCorrente = new ContaCorrente(usuario);
+        Conta contaPoupanca = new ContaPoupanca(usuario);
+
+        // Operações simples
+        contaCorrente.depositar(1000);
+        contaCorrente.sacar(250);
+        contaCorrente.transferir(200, contaPoupanca);
+
+        // Impressão dos extratos
+        contaCorrente.imprimirExtrato();
+        System.out.println();
+        contaPoupanca.imprimirExtrato();
+    }
+
+    // ====== Classe Usuario (Encapsulamento + SRP do SOLID) ======
+    static class Usuario {
+        private String nome;
+        private String cpf;
+        private String email;
+
+        public Usuario(String nome, String cpf, String email) {
+            this.nome = nome;
+            this.cpf = cpf;
+            this.email = email;
+        }
+
+        public String getNome() { return nome; }
+        public String getCpf() { return cpf; }
+        public String getEmail() { return email; }
+
+        public void exibirDados() {
+            System.out.println("Nome: " + nome);
+            System.out.println("CPF: " + cpf);
+            System.out.println("Email: " + email);
+        }
+    }
+
+    // ====== Classe abstrata Conta (Abstração) ======
+    static abstract class Conta {
+        protected Usuario usuario;
+        protected double saldo;
+
+        public Conta(Usuario usuario) {
+            this.usuario = usuario;
+            this.saldo = 0.0;
+        }
+
+        public void depositar(double valor) {
+            saldo += valor;
+        }
+
+        public void sacar(double valor) {
+            if (valor <= saldo) {
+                saldo -= valor;
+            } else {
+                System.out.println("Saldo insuficiente!");
+            }
+        }
+
+        public void transferir(double valor, Conta destino) {
+            if (valor <= saldo) {
+                this.sacar(valor);
+                destino.depositar(valor);
+            } else {
+                System.out.println("Saldo insuficiente para transferência!");
+            }
+        }
+
+        public abstract void imprimirExtrato(); // Polimorfismo aqui
+    }
+
+    // ====== ContaCorrente (Herança + Polimorfismo) ======
+    static class ContaCorrente extends Conta {
+        public ContaCorrente(Usuario usuario) {
+            super(usuario);
+        }
+
+        @Override
+        public void imprimirExtrato() {
+            System.out.println("=== Extrato Conta Corrente ===");
+            usuario.exibirDados();
+            System.out.println("Saldo atual: R$ " + String.format("%.2f", saldo));
+        }
+    }
+
+    // ====== ContaPoupanca (Herança + Polimorfismo) ======
+    static class ContaPoupanca extends Conta {
+        public ContaPoupanca(Usuario usuario) {
+            super(usuario);
+        }
+
+        @Override
+        public void imprimirExtrato() {
+            System.out.println("=== Extrato Conta Poupança ===");
+            usuario.exibirDados();
+            System.out.println("Saldo atual: R$ " + String.format("%.2f", saldo));
+        }
+    }
+}
