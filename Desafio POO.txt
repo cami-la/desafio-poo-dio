@@ -1,0 +1,125 @@
+import java.time.LocalDate;
+import java.util.*;
+
+abstract class Conteudo {
+    private String titulo;
+    private String descricao;
+    protected static final double XP_BASE = 10.0;
+
+    public abstract double calcularXp();
+
+    // Getters/Setters
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+}
+
+class Curso extends Conteudo {
+    private int cargaHoraria;
+
+    @Override
+    public double calcularXp() {
+        return XP_BASE + (cargaHoraria * 2.5);
+    }
+
+    // Getters/Setters
+    public int getCargaHoraria() { return cargaHoraria; }
+    public void setCargaHoraria(int cargaHoraria) { this.cargaHoraria = cargaHoraria; }
+}
+
+class Mentoria extends Conteudo {
+    private LocalDate data;
+
+    @Override
+    public double calcularXp() {
+        return XP_BASE + 20.0;
+    }
+
+    // Getters/Setters
+    public LocalDate getData() { return data; }
+    public void setData(LocalDate data) { this.data = data; }
+}
+
+class Bootcamp {
+    private String nome;
+    private String descricao;
+    private Set<Conteudo> conteudos = new LinkedHashSet<>();
+    private Set<Dev> devsInscritos = new LinkedHashSet<>();
+
+    // Métodos de domínio
+    public void adicionarConteudo(Conteudo conteudo) {
+        conteudos.add(conteudo);
+    }
+
+    protected void registrarInscricao(Dev dev) {
+        devsInscritos.add(dev);
+    }
+
+    // Getters/Setters
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public Set<Conteudo> getConteudos() { return Collections.unmodifiableSet(conteudos); }
+}
+
+class Dev {
+    private String nome;
+    private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
+    private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+
+    public void inscrever(Bootcamp bootcamp) {
+        conteudosInscritos.addAll(bootcamp.getConteudos());
+        bootcamp.registrarInscricao(this);
+    }
+
+    public void progredir() {
+        Optional<Conteudo> proximo = conteudosInscritos.stream().findFirst();
+        proximo.ifPresent(c -> {
+            conteudosConcluidos.add(c);
+            conteudosInscritos.remove(c);
+        });
+    }
+
+    public double calcularXpTotal() {
+        return conteudosConcluidos.stream()
+                .mapToDouble(Conteudo::calcularXp)
+                .sum();
+    }
+
+    // Getters/Setters
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public Set<Conteudo> getConteudosInscritos() { return Collections.unmodifiableSet(conteudosInscritos); }
+    public Set<Conteudo> getConteudosConcluidos() { return Collections.unmodifiableSet(conteudosConcluidos); }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Curso java = new Curso();
+        java.setTitulo("Java POO");
+        java.setDescricao("Pilares da OO");
+        java.setCargaHoraria(8);
+
+        Mentoria mentoria = new Mentoria();
+        mentoria.setTitulo("Mentoria de Carreira");
+        mentoria.setDescricao("Dicas práticas");
+        mentoria.setData(LocalDate.now());
+
+        Bootcamp bootcamp = new Bootcamp();
+        bootcamp.setNome("Bootcamp Java");
+        bootcamp.setDescricao("Imersão em POO");
+        bootcamp.adicionarConteudo(java);
+        bootcamp.adicionarConteudo(mentoria);
+
+        Dev douglas = new Dev();
+        douglas.setNome("Douglas");
+        douglas.inscrever(bootcamp);
+
+        douglas.progredir();
+        douglas.progredir();
+
+        System.out.println("XP total: " + douglas.calcularXpTotal());
+    }
+}
