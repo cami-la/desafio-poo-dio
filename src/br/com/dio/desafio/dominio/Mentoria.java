@@ -14,6 +14,13 @@ public class Mentoria extends Conteudo{
     public Mentoria() {
     }
 
+    public Mentoria(String titulo, String descricao, Tutor professor, LocalDate date) {
+        this.setTitulo(titulo);
+        this.setDescricao(descricao);
+        this.setProfessor(professor);
+        this.setData(date);
+    }
+
     public LocalDate getData() {
         return data;
     }
@@ -27,7 +34,8 @@ public class Mentoria extends Conteudo{
         return "Mentoria{" +
                 "titulo='" + getTitulo() + '\'' +
                 ", descricao='" + getDescricao() + '\'' +
-                ", data=" + data +
+                ", data=" + data + '\'' +
+                ", professor=" + getProfessor().getName() +
                 '}';
     }
 }
