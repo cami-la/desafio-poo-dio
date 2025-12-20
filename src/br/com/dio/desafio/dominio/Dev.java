@@ -62,6 +62,12 @@ public class Dev {
         this.conteudosConcluidos = conteudosConcluidos;
     }
 
+    public double calcularProgresso() {
+        int total = this.getConteudosInscritos().size() + this.getConteudosConcluidos().size();
+        if (total == 0) return 0;
+        return (this.getConteudosConcluidos().size() * 100.0) / total;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
