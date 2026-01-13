@@ -14,6 +14,8 @@ public abstract class Conteudo {
     }
 
     public void setTitulo(String titulo) {
+        if (titulo == null || titulo.isBlank())
+            throw new IllegalArgumentException("Título inválido");
         this.titulo = titulo;
     }
 
@@ -22,6 +24,8 @@ public abstract class Conteudo {
     }
 
     public void setDescricao(String descricao) {
+        if (descricao == null || descricao.isBlank())
+            throw new IllegalArgumentException("Descrição inválida");
         this.descricao = descricao;
     }
 }

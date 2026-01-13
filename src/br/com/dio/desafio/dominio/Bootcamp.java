@@ -5,14 +5,15 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Collections;
 
 public class Bootcamp {
     private String nome;
     private String descricao;
     private final LocalDate dataInicial = LocalDate.now();
     private final LocalDate dataFinal = dataInicial.plusDays(45);
-    private Set<Dev> devsInscritos = new HashSet<>();
-    private Set<Conteudo> conteudos = new LinkedHashSet<>();
+    private final Set<Dev> devsInscritos = new HashSet<>();
+    private final Set<Conteudo> conteudos = new LinkedHashSet<>();
 
 
     public String getNome() {
@@ -48,7 +49,11 @@ public class Bootcamp {
     }
 
     public Set<Conteudo> getConteudos() {
-        return conteudos;
+        return Collections.unmodifiableSet(conteudos);
+    }
+
+    public void adicionarConteudo(Conteudo conteudo){
+        this.conteudos.add(conteudo);
     }
 
     public void setConteudos(Set<Conteudo> conteudos) {
