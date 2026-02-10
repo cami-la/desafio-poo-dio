@@ -1,5 +1,7 @@
 package br.com.dio.desafio.dominio;
 
+import br.com.dio.desafio.dominio.exceptions.ValidacaoException;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -20,6 +22,7 @@ public class Bootcamp {
     }
 
     public void setNome(String nome) {
+        validarNome(nome);
         this.nome = nome;
     }
 
@@ -28,7 +31,27 @@ public class Bootcamp {
     }
 
     public void setDescricao(String descricao) {
+        validarDescricao(descricao);
         this.descricao = descricao;
+    }
+
+    /**
+     * Validações de negócio
+     * Demonstra ENCAPSULAMENTO: regras de negócio protegidas
+     */
+    private void validarNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new ValidacaoException("Nome do bootcamp não pode ser vazio");
+        }
+        if (nome.length() < 3) {
+            throw new ValidacaoException("Nome do bootcamp deve ter pelo menos 3 caracteres");
+        }
+    }
+
+    private void validarDescricao(String descricao) {
+        if (descricao == null || descricao.trim().isEmpty()) {
+            throw new ValidacaoException("Descrição do bootcamp não pode ser vazia");
+        }
     }
 
     public LocalDate getDataInicial() {
