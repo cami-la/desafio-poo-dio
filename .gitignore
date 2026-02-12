@@ -219,4 +219,15 @@ hs_err_pid*
 .history
 .ionide
 
+# Maven
+/target/
+
+# IDE
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,eclipse,visualstudiocode
