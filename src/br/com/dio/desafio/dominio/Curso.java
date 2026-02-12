@@ -12,7 +12,6 @@ public class Curso extends Conteudo{
     public Curso() {
     }
 
-
     public int getCargaHoraria() {
         return cargaHoraria;
     }

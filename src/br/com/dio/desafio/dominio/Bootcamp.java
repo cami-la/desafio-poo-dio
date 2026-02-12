@@ -55,6 +55,40 @@ public class Bootcamp {
         this.conteudos = conteudos;
     }
 
+    public void listarInscritosPorBootcamp(){
+        System.out.printf("\nBootcamp: %s\n", this.nome);
+        System.out.printf("Descrição: %s\n ", this.descricao);
+
+        if(devsInscritos.isEmpty()){
+            System.out.println("\nBootcamp sem Devs inscritos!");
+        }
+
+        for(Dev v : devsInscritos){
+            var conteudosInscritos = v.getConteudosInscritos();
+            var conteudosConcluidos = v.getConteudosConcluidos();
+
+            System.out.println("-----------------------------------------");
+            System.out.printf("Dev: %s - XP Atual: %s\n", v.getNome(), v.calcularTotalXp());
+            System.out.println("-----------------------------------------");
+            System.out.println("Conteudos inscritos:");
+
+            if(conteudosInscritos.isEmpty()) System.out.println("    Nenhum conteudo inscrito");
+
+            for(Conteudo c : conteudosInscritos){
+                System.out.printf("    (%s) - Titulo: %s\n",c.getClass().getSimpleName(), c.getTitulo());
+            }
+
+            System.out.println("\nConteudos Concluidos:");
+
+            if(conteudosConcluidos.isEmpty()) System.out.println("    Nenhum conteudo concluido");
+
+            for(Conteudo c1 : conteudosConcluidos){
+                System.out.printf("    (%s)- Titulo: %s\n", c1.getClass().getSimpleName(),c1.getTitulo());
+            }
+            System.out.println();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

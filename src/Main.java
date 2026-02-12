@@ -58,6 +58,11 @@ public class Main {
         System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
         System.out.println("XP:" + devJoao.calcularTotalXp());
 
+        var bootcamp1 = new Bootcamp();
+        bootcamp1.setNome("Bootcamp Kotlin");
+        bootcamp1.setDescricao("Descricao Bootcamp Kotlin");
+
+        bootcamp1.listarInscritosPorBootcamp();
     }
 
 }
