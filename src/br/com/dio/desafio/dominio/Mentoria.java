@@ -1,7 +1,14 @@
 package br.com.dio.desafio.dominio;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+@NoArgsConstructor
 public class Mentoria extends Conteudo{
 
     private LocalDate data;
@@ -11,16 +18,6 @@ public class Mentoria extends Conteudo{
         return XP_PADRAO + 20d;
     }
 
-    public Mentoria() {
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
 
     @Override
     public String toString() {
