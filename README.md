@@ -134,6 +134,68 @@ Vejamos alguns Subparadigmas do Paradigma Declarativo e exemplos linguagens de p
 🔹 2.2 Paradigma Lógico: Prolog<br>
 </p>
 
+<h2>Diagrama UML</h2>
+<br>
+                <<abstract>>
+                 Conteudo
+---------------------------------
+- titulo : String
+- descricao : String
+# XP_PADRAO : double
+---------------------------------
++ calcularXp() : double
++ getTitulo()
++ setTitulo()
++ getDescricao()
++ setDescricao()
+<br>
+          ▲
+          │
+   ---------------------
+   │                   │
+
+Curso                 Mentoria
+-----------------     -----------------
+- cargaHoraria:int    - data: LocalDate
+-----------------     -----------------
++ calcularXp()        + calcularXp()
+<br>
+<br>
+Bootcamp
+---------------------------------
+- nome : String
+- descricao : String
+- dataInicial : LocalDate
+- dataFinal : LocalDate
+- devsInscritos : Set<Dev>
+- conteudos : Set<Conteudo>
+---------------------------------
++ getters / setters
+<br><br>
+
+Dev
+---------------------------------
+- nome : String
+- conteudosInscritos : Set<Conteudo>
+- conteudosConcluidos : Set<Conteudo>
+---------------------------------
++ inscreverBootcamp(bootcamp)
++ progredir()
++ calcularTotalXp()
+
+<br><br>
+Relacionamentos:
+<br>
+Curso -----------|> Conteudo
+Mentoria --------|> Conteudo
+<br>
+Bootcamp "1" -------- "*" Conteudo
+Bootcamp "1" -------- "*" Dev
+<br>
+Dev "*" -------- "*" Conteudo
+<br><br>
+
+![Diagrama UML](assets/diagrama.png)
 <h2> 🤝 Contribuindo </h2>
 
 <p>
