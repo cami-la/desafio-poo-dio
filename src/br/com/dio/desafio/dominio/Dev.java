@@ -13,12 +13,16 @@ public class Dev {
     }
 
     public void progredir() {
-        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
-        if(conteudo.isPresent()) {
-            this.conteudosConcluidos.add(conteudo.get());
-            this.conteudosInscritos.remove(conteudo.get());
+        Optional<Conteudo> conteudoValido = this.conteudosInscritos.stream().filter(
+            c -> c.getPreRequisito() == null ||
+                this.conteudosConcluidos.contains(
+                    c.getPreRequisito())).findFirst();
+        if (conteudoValido.isPresent()) {
+            this.conteudosConcluidos.add(conteudoValido.get());
+            this.conteudosInscritos.remove(conteudoValido.get());
+            System.out.println("Progresso realizado: " + conteudoValido.get().getTitulo());
         } else {
-            System.err.println("Você não está matriculado em nenhum conteúdo!");
+            System.err.println("Você não pode progredir! Verifique se concluiu os pré-requisitos dos conteúdos pendentes.");
         }
     }
 
