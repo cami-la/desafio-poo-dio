@@ -6,8 +6,17 @@ public abstract class Conteudo {
 
     private String titulo;
     private String descricao;
+    private Conteudo preRequisito;
 
     public abstract double calcularXp();
+
+    public Conteudo getPreRequisito() {
+        return preRequisito;
+    }
+
+    public void setPreRequisito(Conteudo preRequisito) {
+        this.preRequisito = preRequisito;
+    }
 
     public String getTitulo() {
         return titulo;
