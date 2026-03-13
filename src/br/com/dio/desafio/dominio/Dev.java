@@ -3,6 +3,8 @@ package br.com.dio.desafio.dominio;
 import java.util.*;
 
 public class Dev {
+
+    private int id;
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
@@ -62,16 +64,29 @@ public class Dev {
         this.conteudosConcluidos = conteudosConcluidos;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dev dev = (Dev) o;
-        return Objects.equals(nome, dev.nome) && Objects.equals(conteudosInscritos, dev.conteudosInscritos) && Objects.equals(conteudosConcluidos, dev.conteudosConcluidos);
+        return Objects.equals(id, dev.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, conteudosInscritos, conteudosConcluidos);
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return this.id + " - " + this.nome + " - " + this.calcularTotalXp();
     }
 }

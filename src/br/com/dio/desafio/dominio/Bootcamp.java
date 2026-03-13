@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Bootcamp {
+    private int id;
     private String nome;
     private String descricao;
     private final LocalDate dataInicial = LocalDate.now();
@@ -55,16 +56,29 @@ public class Bootcamp {
         this.conteudos = conteudos;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bootcamp bootcamp = (Bootcamp) o;
-        return Objects.equals(nome, bootcamp.nome) && Objects.equals(descricao, bootcamp.descricao) && Objects.equals(dataInicial, bootcamp.dataInicial) && Objects.equals(dataFinal, bootcamp.dataFinal) && Objects.equals(devsInscritos, bootcamp.devsInscritos) && Objects.equals(conteudos, bootcamp.conteudos);
+        return Objects.equals(id, bootcamp.getId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, conteudos);
+    }
+
+    @Override
+    public String toString() {
+        return this.nome + " - " + this.descricao;
     }
 }
