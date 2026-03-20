@@ -30,13 +30,11 @@ public class Dev {
             soma += next;
         }
         return soma;
-
-        /*return this.conteudosConcluidos
-                .stream()
-                .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
     }
 
+    public Nivel getNivel() {
+        return Nivel.calcularNivel(calcularTotalXp());
+    }
 
     public String getNome() {
         return nome;
