@@ -1,3 +1,22 @@
+# 🚀 Desafio POO - Bootcamp DIO (Java)
+
+## 📚 Descrição
+Projeto desenvolvido com o objetivo de praticar os pilares da Programação Orientada a Objetos (POO) em Java, 
+simulando um ambiente de Bootcamp com cursos, mentorias e progressão de desenvolvedores.
+
+## 🔥 Melhorias implementadas
+
+- Menu interativo
+- Validações no sistema
+- Uso de switch moderno (Java 17+)
+- Melhor organização do código
+
+---
+
+## 📌 Referência
+
+Este projeto foi baseado no desafio da plataforma DIO.
+
 <h1> Desafio: Aprenda na Prática Programação Orientada a Objetos</h1>
 
 <p align="center"> 📜 <a href="https://academiapme-my.sharepoint.com/:p:/g/personal/camila_cavalcante_dio_me/EaXyYOjBaFpZjkxhexMo5EcBKMEEAI5t5aHlsTjnBQJlUw?e=nxdB6C"> SLIDES APRESENTADO NO PROJETO </a> 📜 </P>
@@ -10,7 +29,7 @@
 
 <p>
 ✅ Conhecer a sintaxe da Java<br>
-✅ Java JDK 11<br>
+✅ Java JDK 17+<br>
 ✅ IDE para desenvolvimento Java (usarei IntelliJ)<br>
 ✅ Git<br>
 ✅ Conta no GitHub<br>

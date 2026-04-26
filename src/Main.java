@@ -4,9 +4,13 @@ import br.com.dio.desafio.dominio.Dev;
 import br.com.dio.desafio.dominio.Mentoria;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Criando conteúdos
         Curso curso1 = new Curso();
         curso1.setTitulo("curso java");
         curso1.setDescricao("descrição curso java");
@@ -22,10 +26,6 @@ public class Main {
         mentoria.setDescricao("descrição mentoria java");
         mentoria.setData(LocalDate.now());
 
-        /*System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);*/
-
         Bootcamp bootcamp = new Bootcamp();
         bootcamp.setNome("Bootcamp Java Developer");
         bootcamp.setDescricao("Descrição Bootcamp Java Developer");
@@ -33,31 +33,83 @@ public class Main {
         bootcamp.getConteudos().add(curso2);
         bootcamp.getConteudos().add(mentoria);
 
-        Dev devCamila = new Dev();
-        devCamila.setNome("Camila");
-        devCamila.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        devCamila.progredir();
-        devCamila.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
-        System.out.println("XP:" + devCamila.calcularTotalXp());
+        // Criando Dev
+        Dev dev = new Dev();
 
-        System.out.println("-------");
+        int opcao;
 
-        Dev devJoao = new Dev();
-        devJoao.setNome("Joao");
-        devJoao.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        devJoao.progredir();
-        devJoao.progredir();
-        devJoao.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
-        System.out.println("XP:" + devJoao.calcularTotalXp());
+        do {
+            System.out.printf("===== MENU =====\n");
+            System.out.println("1 - Criar Dev");
+            System.out.println("2 - Inscrever no Bootcamp");
+            System.out.println("3 - Progredir");
+            System.out.println("4 - Ver conteúdos inscritos");
+            System.out.println("5 - Ver conteúdos concluídos");
+            System.out.println("6 - Ver XP");
+            System.out.println("0 - Sair");
+
+            System.out.print("Escolha: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1 -> {
+                    System.out.print("Digite o nome do Dev: ");
+                    String nome = scanner.nextLine();
+                    dev.setNome(nome);
+                    System.out.println("Dev criado com sucesso!");
+                }
+
+                case 2 -> {
+                    if (dev.getNome() == null) {
+                        System.out.println("Crie um Dev primeiro!");
+                    } else {
+                        dev.inscreverBootcamp(bootcamp);
+                        System.out.println("Inscrito no bootcamp!");
+                    }
+                }
+
+                case 3 -> {
+                    if (dev.getNome() == null) {
+                        System.out.println("Crie um Dev primeiro!");
+                    } else if (dev.getConteudosInscritos().isEmpty()) {
+                        System.out.println("Nenhum conteúdo para progredir!");
+                    } else {
+                        dev.progredir();
+                        System.out.println("Progresso realizado!");
+                    }
+                }
+
+                case 4 -> {
+                    if (dev.getConteudosInscritos().isEmpty()) {
+                    System.out.println("Nenhum conteúdo inscrito.");
+                     } else {
+                    System.out.println(dev.getConteudosInscritos());
+                    }
+                }
+
+
+                case 5 -> {
+                    if (dev.getNome() == null) {
+                        System.out.println("Crie um Dev primeiro!");
+                    } else {
+                        System.out.println("Conteúdos concluídos: " + dev.getConteudosConcluidos());
+                    }
+                }
+
+                case 6 ->{
+                    if (dev.getNome() == null) {
+                        System.out.println("Crie um Dev primeiro!");
+                    } else {
+                        System.out.println("XP total: " + dev.calcularTotalXp());
+                    }
+                }
+
+                case 0 -> System.out.println("Saindo...");
+
+                default -> System.out.println("Opção inválida!");
+            }
+        } while (opcao != 0);
 
     }
-
 }
