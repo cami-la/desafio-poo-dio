@@ -29,12 +29,12 @@ public class Dev {
             double next = iterator.next().calcularXp();
             soma += next;
         }
-        return soma;
 
-        /*return this.conteudosConcluidos
+
+        return this.conteudosConcluidos
                 .stream()
                 .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
+                .sum();
     }
 
 
