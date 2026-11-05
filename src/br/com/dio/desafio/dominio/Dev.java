@@ -1,12 +1,32 @@
 package br.com.dio.desafio.dominio;
 
 import java.util.*;
+import java.lang.Math;
 
 public class Dev {
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+    private int nivel;
+    private double xp;
 
+    /* mudar método para ser privado como parte da revisao do XP*/
+    private void calcularTotalXp() {
+        Iterator<Conteudo> iterator = this.conteudosConcluidos.iterator();
+        double xp = 0;
+        while(iterator.hasNext()){
+            double next = iterator.next().calcularXp();
+            xp += next;
+        }
+        this.xp = xp;
+        calcularnivel();
+    }
+    private void calcularnivel() {
+    	double xp = this.xp;
+    	int nivel = (int) Math.floor( (25 + Math.sqrt(625 + 100 * xp)) / 50 );
+    	this.nivel = nivel;
+    }
+    
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
@@ -17,26 +37,19 @@ public class Dev {
         if(conteudo.isPresent()) {
             this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
+            calcularTotalXp();
         } else {
             System.err.println("Você não está matriculado em nenhum conteúdo!");
         }
     }
 
-    public double calcularTotalXp() {
-        Iterator<Conteudo> iterator = this.conteudosConcluidos.iterator();
-        double soma = 0;
-        while(iterator.hasNext()){
-            double next = iterator.next().calcularXp();
-            soma += next;
-        }
-        return soma;
-
-        /*return this.conteudosConcluidos
-                .stream()
-                .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
+    public int getNivel() {
+    	return this.nivel;
     }
-
+    public double getXp() {
+    	return this.xp;
+    }
+    
 
     public String getNome() {
         return nome;
